@@ -6,7 +6,15 @@ import unittest
 # search for the url in the University of Michgian wikipedia page (in the third pargraph of the intro)
 # HINT: You will have to add https://en.wikipedia.org to the URL retrieved using BeautifulSoup
 def getLink(soup):
-    pass
+    #get the paragraph
+    p = soup.find_all('p')[2]
+    #get the link
+    link = p.find('a')
+    #get the link text
+    link_text = link.get('href')
+    #print the link
+    print('https://en.wikipedia.org' + link_text)
+    return 'https://en.wikipedia.org' + link_text
 
 
 
@@ -22,9 +30,7 @@ def main():
     # Task 1: Create a BeautifulSoup object and name it soup.
     #create a variable that stores the url of the University of Michigan wikipedia page
     url = "https://en.wikipedia.org/wiki/University_of_Michigan"
-    #create a variable that stores the html of the url
     html = requests.get(url).text
-    #create a BeautifulSoup object and name it soup
     soup = BeautifulSoup(html, 'html.parser')
 
 
